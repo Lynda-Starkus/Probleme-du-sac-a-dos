@@ -1,0 +1,12 @@
+*{
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+html, body{
+  background-color: #eee;
+}
+
+h1{
+  margin-top: 0em;
+}
