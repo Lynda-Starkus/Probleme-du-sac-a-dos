@@ -1,10 +1,16 @@
 
+import{objets} from './main.js'
+import{capMax} from './main.js'
+
+
+
 class objetAEmporter //Class Contenant les Objets qu'on voudrait mettre dans le sac 
 {
-    constructor(poids, valeur)
+    constructor(name, poids, valeur)
     {
         this.poids = poids;
         this.valeur = valeur ;
+        this.name = name;
     }
     get getValeur()
     {
@@ -13,6 +19,11 @@ class objetAEmporter //Class Contenant les Objets qu'on voudrait mettre dans le 
     get getPoids()
     {
         return this.poids;
+    }
+
+    get getName()
+    {
+        return this.name;
     }
 }
 
@@ -70,7 +81,7 @@ function objetsPris (listeObj, matrice )
         {
             let i = 0;
             while( matrice[i][c] < val) i ++;
-            listeObjetsPris.push(listeObj[i]);
+            listeObjetsPris.push(listeObj[i].name);
             val = matrice[i][c] - listeObj[i].getValeur;
             c -= listeObj[i].getPoids;
         }
@@ -78,8 +89,15 @@ function objetsPris (listeObj, matrice )
     return listeObjetsPris;
 }
 
-//Initialisation
-let W = 30;
-let listeObj = [new objetAEmporter(0,1),new objetAEmporter(4,1),new objetAEmporter(2,1),new objetAEmporter(5,2),new objetAEmporter(7,3),new objetAEmporter(12,7),new objetAEmporter(9,10),new objetAEmporter(7,18),new objetAEmporter(4,10),new objetAEmporter(6,8),new objetAEmporter(0,8),new objetAEmporter(0,7)];
 
-console.table(objetsPris(listeObj,remplirSac( listeObj, W)));
+
+
+let listeObj;
+
+    for(var i=0; i<objets.length; ++i){
+        listeObj.push(new objetAEmporter(objets[i].weight, objets[i].value, objets[i].name));
+    }
+
+    result = objetsPris(listeObj,remplirSac( listeObj, capMax));
+
+export{result};
